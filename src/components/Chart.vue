@@ -1,17 +1,16 @@
 <script>
-import { Line } from 'vue-chartjs'
+import { Pie } from 'vue-chartjs'
 
 export default {
   name: 'Chart',
-  extends: Line,
+  extends: Pie,
   mounted () {
     this.renderChart({
-      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+      labels: ['Infectados', 'Recuperados', 'Fallecidos'],
       datasets: [
         {
-          label: 'Data One',
-          backgroundColor: '#f87979',
-          data: [40, 39, 10, 40, 39, 80, 40]
+          backgroundColor: ['#7778e6', '#90e294', '#f87979'],
+          data: [30, 30, 10]
         }
       ]
     }, { responsive: true, maintainAspectRatio: false })
