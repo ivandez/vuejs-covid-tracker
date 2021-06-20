@@ -19,18 +19,21 @@
 
     <v-main>
       <GlobalCases />
+      <ChartContainer/>
     </v-main>
   </v-app>
 </template>
 
 <script>
 import GlobalCases from './components/GlobalCases.vue'
+import ChartContainer from './components/ChartContainer.vue'
 
 export default {
   name: 'App',
 
   components: {
-    GlobalCases
+    GlobalCases,
+    ChartContainer
   },
 
   data: () => ({

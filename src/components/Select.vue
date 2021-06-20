@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <v-select label="Paises" :items="paises"></v-select>
+  <div class="csss">
+    <v-select class="select" label="Paises" :items="paises"></v-select>
   </div>
 </template>
 
@@ -12,5 +12,3 @@ export default {
   })
 }
 </script>
-
-<style></style>
