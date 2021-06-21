@@ -7,9 +7,6 @@
 <script>
 export default {
   name: 'Select',
-  props: ['countries'],
-  data: () => ({
-    countries: this.props.countries
-  })
+  props: ['countries']
 }
 </script>
