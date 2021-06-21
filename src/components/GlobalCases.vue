@@ -62,7 +62,12 @@ export default {
         .then(({ data }) => {
           // handle success
           console.log('Data update every 10 minutes')
-          this.covidCases = data
+          this.covidCases = {
+            // toLocaleString = format int to metric system
+            active: data.active.toLocaleString('es-ES'),
+            recovered: data.recovered.toLocaleString('es-ES'),
+            deaths: data.deaths.toLocaleString('es-ES')
+          }
         })
         .catch(function (error) {
           // handle error
