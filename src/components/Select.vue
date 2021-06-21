@@ -1,14 +1,15 @@
 <template>
-  <div class="csss">
-    <v-select class="select" label="Paises" :items="paises"></v-select>
+  <div>
+    <v-select class="select" label="Paises" :items="countries"></v-select>
   </div>
 </template>
 
 <script>
 export default {
   name: 'Select',
+  props: ['countries'],
   data: () => ({
-    paises: ['Venezuela', 'EEUE', 'RUSIA']
+    countries: this.props.countries
   })
 }
 </script>
