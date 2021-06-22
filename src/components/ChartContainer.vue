@@ -3,12 +3,12 @@
     <v-container>
       <v-row>
         <v-col>
-          <Select :countries="countries" />
+          <Select :countries="countries" v-on:get-country="getCountry"/>
         </v-col>
       </v-row>
       <v-row>
         <v-col class="country-fetched">
-          <p>Casos de Covid-19 en ARgentina</p>
+          <p>{{ country || "Seleciona un país en el selector de arriba" }}</p>
         </v-col>
       </v-row>
       <v-row>
@@ -33,7 +33,8 @@ export default {
   },
   data () {
     return {
-      countries: undefined
+      countries: undefined,
+      country: ''
     }
   },
   methods: {
@@ -49,6 +50,11 @@ export default {
       const countries = response.data.map(country => country.country)
 
       this.countries = countries
+    },
+    // return selected country from Select.vue
+    getCountry (e) {
+      this.country = `Casos de Covid-19 en ${e}`
+      console.log(e)
     }
   },
   mounted () {
