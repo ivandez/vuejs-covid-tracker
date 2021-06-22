@@ -33,15 +33,16 @@ export default {
   },
   data () {
     return {
-      countries: this.getCountries()
+      countries: undefined
     }
   },
   methods: {
     async getCountries () {
       let response = null
       try {
-        response = await axios
-          .get('https://corona.lmao.ninja/v2/countries?yesterday&sort')
+        response = await axios.get(
+          'https://corona.lmao.ninja/v2/countries?yesterday&sort'
+        )
       } catch (error) {
         console.log('error fetching countries')
       }
@@ -49,6 +50,9 @@ export default {
 
       this.countries = countries
     }
+  },
+  mounted () {
+    this.getCountries()
   }
 }
 </script>
