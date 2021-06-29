@@ -13,7 +13,6 @@
       </v-row>
       <v-row>
         <v-col>
-          <!-- <Chart :infectados="infected" :recuperados="30" :fallecidos="20"/> -->
           <Chart :chartData="chartdata"/>
         </v-col>
       </v-row>
@@ -36,7 +35,8 @@ export default {
     return {
       countries: undefined,
       country: '',
-      chartdata: undefined
+      chartdata: undefined,
+      loaded: false
     }
   },
   methods: {
@@ -56,18 +56,30 @@ export default {
     // return selected country from Select.vue
     getCountry (e) {
       this.country = `Casos de Covid-19 en ${e}`
-      this.chartdata = {
+      this.fetchCountryCase(e)
+    },
+    // return covid case from selected country
+    async fetchCountryCase (country) {
+      let response = null
+      try {
+        response = await axios.get(`https://corona.lmao.ninja/v2/countries/${country}?yesterday&strict&query%20`)
+        this.chartdata = this.setChartData(response.data)
+        this.loaded = true
+      } catch (e) {
+        console.error(e)
+      }
+    },
+    setChartData ({ active, recovered, deaths }) {
+      const chartData = {
         labels: ['Infectados', 'Recuperados', 'Fallecidos'],
         datasets: [
           {
             backgroundColor: ['#7778e6', '#90e294', '#f87979'],
-            data: [this.getRandomInt(), this.getRandomInt(), this.getRandomInt()]
+            data: [active, recovered, deaths]
           }
         ]
       }
-    },
-    getRandomInt () {
-      return Math.floor(Math.random() * (50 - 5 + 1)) + 5
+      return chartData
     }
   },
   mounted () {
