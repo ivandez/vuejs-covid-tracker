@@ -13,7 +13,7 @@
       </v-row>
       <v-row>
         <v-col>
-          <Chart :chartData="chartdata"/>
+          <Chart :chartData="chartdata" v-if="loaded"/>
         </v-col>
       </v-row>
     </v-container>
