@@ -13,7 +13,8 @@
       </v-row>
       <v-row>
         <v-col>
-          <Chart />
+          <!-- <Chart :infectados="infected" :recuperados="30" :fallecidos="20"/> -->
+          <Chart :chartData="chartdata"/>
         </v-col>
       </v-row>
     </v-container>
@@ -34,7 +35,8 @@ export default {
   data () {
     return {
       countries: undefined,
-      country: ''
+      country: '',
+      chartdata: undefined
     }
   },
   methods: {
@@ -54,7 +56,18 @@ export default {
     // return selected country from Select.vue
     getCountry (e) {
       this.country = `Casos de Covid-19 en ${e}`
-      console.log(e)
+      this.chartdata = {
+        labels: ['Infectados', 'Recuperados', 'Fallecidos'],
+        datasets: [
+          {
+            backgroundColor: ['#7778e6', '#90e294', '#f87979'],
+            data: [this.getRandomInt(), this.getRandomInt(), this.getRandomInt()]
+          }
+        ]
+      }
+    },
+    getRandomInt () {
+      return Math.floor(Math.random() * (50 - 5 + 1)) + 5
     }
   },
   mounted () {

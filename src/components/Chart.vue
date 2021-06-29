@@ -1,19 +1,18 @@
 <script>
-import { Pie } from 'vue-chartjs'
+import { Pie, mixins } from 'vue-chartjs'
+const { reactiveProp } = mixins
 
 export default {
   name: 'Chart',
   extends: Pie,
+  mixins: [reactiveProp],
+  data () {
+    return {
+      options: { responsive: true, maintainAspectRatio: false }
+    }
+  },
   mounted () {
-    this.renderChart({
-      labels: ['Infectados', 'Recuperados', 'Fallecidos'],
-      datasets: [
-        {
-          backgroundColor: ['#7778e6', '#90e294', '#f87979'],
-          data: [30, 30, 10]
-        }
-      ]
-    }, { responsive: true, maintainAspectRatio: false })
+    this.renderChart(this.chartData, this.options)
   }
 }
 
